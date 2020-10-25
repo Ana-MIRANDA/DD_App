@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RaceDetailsActivity">
+
+    <TextView
+        android:id="@+id/tvraceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/tvSubRaces"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subraces: " />
+
+    <TextView
+        android:id="@+id/tvSpeed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Speed: " />
+
+    <TextView
+        android:id="@+id/tvAbilityBonuses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ability Bonuses: " />
+
+    <TextView
+        android:id="@+id/tvSize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Size: " />
+
+    <TextView
+        android:id="@+id/tvStartingProficienciesOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Starting Proficiencies: " />
+
+    <TextView
+        android:id="@+id/tvTraits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Traits: " />
+
+</LinearLayout>

@@ -11,30 +11,14 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    //declarar variaveis que sao componentes graficos
-    TextView tvraceName; //variavel tvraceName que é do tipo TextView
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        //dar conteudo a variavel tvracNeme
-        tvraceName = findViewById(R.id.tvraceName);
-
     }//Fecha a funcçao oncreate
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if( getIntent().getExtras()!= null){
-            Bundle bundle = getIntent().getExtras();
-            String youChose = bundle.getString("chosen");
 
-            tvraceName.setText("Your Race is: " + youChose);
-        }
-    }
 
-    //Definir o menu e seu selementos
+    //Definir o menu e seus selementos
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, 1, 0, "Choose Race" );
@@ -42,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    //Definir a funçao de cada element do menu
+    //Definir a funçao de cada elemento do menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId())

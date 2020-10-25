@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 //RecyclerView + Row + Adapter: O recyclerview(so pode ter um filho mas pode ter mts netos)contem a row, ou seja o que vai aparecer de design
 // O adapter é o que permite dar conteudo "escrito" a cd elemento design de row
-
+// o recyclerView + adapter + row permitem criar listas com scroolView
 
 public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder>{
 
@@ -46,9 +46,7 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder>{
         holder.tv.setText(theRaceBean.getName());
        // System.out.println("O nome------------------" + theRace.getName());
         //neste textview apresenta-se a subrace da raca
-
-
-
+        /*
             if(theRaceBean.objetSubraces.results.size() == 0){ //se o arraylist de subraces nao tiver nenhum index/nenhuma subrace
                 holder.tvSubRaces.setText("");
             } else{
@@ -57,12 +55,12 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder>{
                     holder.tvSubRaces.append(subRaca.getName()); //indicar a propriedade nome da subrace
                     //se houvesse mais do que uma raca fariamos: holder.tvSubRaces.append(" " + subRaca.getName() + ","); para ficar com , entre as racas + if p verificar se era o ultimo p n ficar uma , no fim
                 }
-            }
+            }*/
 
 
+// aqui e o tv que aparece antes da foto para indicar por escrito a raca selecionada
+//o root e o linearout onde se clica p selecionar a raca
 
-        // aqui e o tv que aparece antes da foto para indicar por escrito a raca selecionada
-        //o root e o linearout onde se clica p selecionar a raca
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,25 +72,28 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder>{
              //o toast q apresenta embaixo a raca escolhida
                 Toast.makeText(v.getContext(), "You chose wisely. " + chosenRace.getText(), Toast.LENGTH_LONG).show();
 
-            //mudar de ecra/activity apos o toast
-                Intent i = new Intent(v.getContext(), MainActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("chosen", chosenRace.getText().toString());
-                i.putExtras(bundle);
+            //mudar do ecra choose race para racedetails quando se clica na linha da raca escolhida
+                Intent i = new Intent(v.getContext(), RaceDetailsActivity.class);
+                //se quisessemos
+               Bundle bundle = new Bundle();
+               bundle.putString("chosen", chosenRace.getText().toString());
+                bundle.putString("chosenIndex", theRaceBean.getIndex());
+               i.putExtras(bundle);
                 v.getContext().startActivity(i);
             }
         });
     }
 
-    //definir aqui os eleementos xml no qual o adapter deve incluir o conteudo que se quer
+    //definir aqui os elementos xml no qual o adapter deve incluir o conteudo que se quer
     @Override
     public int getItemCount() {
         return raceBeans.size();
     }
     public static class ViewHolder extends RecyclerView.ViewHolder{
+        LinearLayout root; //o layout dentro do qual estao os textviews q sao netos do recyclerview e que vai ser clicado
         TextView tv; // para apresentar o nome da raca
         TextView tvSubRaces;//para apreentar a descriçao da raca
-        LinearLayout root; //o layout dentro do qual estao os textviews q sao netos do recyclerview
+
        public ViewHolder(@NonNull View itemView) {
            super(itemView);
            tv = itemView.findViewById(R.id.tv);

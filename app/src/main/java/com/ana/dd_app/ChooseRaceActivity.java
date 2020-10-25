@@ -66,7 +66,6 @@ public class ChooseRaceActivity extends AppCompatActivity {
              ArrayList<RaceBean> listaDeRaças = wsutils.alimentarModeloRaces(); //chamar a funçao que esta dentro da classse WSUtils instanciada acima e retorna a lista de racas a guardar em listaDeRacas
              raceBeanArrayList.addAll(listaDeRaças);
 
-
 //______ MUDAR COMPONENTES GRAFICOS: runInOnThread____________
 
                 runOnUiThread(new Runnable() {
@@ -83,26 +82,30 @@ public class ChooseRaceActivity extends AppCompatActivity {
                                 rotateDice();
                                 int i = random.nextInt(raceBeanArrayList.size());
                                 String n = raceBeanArrayList.get(i).getName();
-
-
+                                String indexRaca = raceBeanArrayList.get(i).getIndex();
 
 //_____________________________________  TOAST  ______________
 
                                 Toast.makeText(view.getContext(), "Your random race is:  " + n, Toast.LENGTH_LONG).show();
 
-//___ RANDOM: MUDAR ECRA COM DELAY DE 1.5 SEGUNDOS P SE VER A ANIMACAO DO DADO ____
+//_______ RANDOM: MUDAR ECRA COM DELAY DE 1.5 SEGUNDOS P SE VER A ANIMACAO DO DADO ____
 
-                                new Handler().postDelayed(new Runnable(){
+     // em chooseRace so eesta o onclick do botao random pk esse botao faz parte do xml de chooseRace_activity enquanto q cada linha de raca
+        // faz parte do adapter logo o seu evento onclick nao pode aprecer neste documento
+
+                                new Handler().postDelayed(new Runnable(){ //o ahandeler e uma cena do java
                                     @Override
                                     public void run() {
                                         Intent intent = new Intent(view.getContext(), MainActivity.class);
                                         Bundle bundle = new Bundle(); //bundle e um tipo de variavel k recebe todos os tipos de variaveis
                                         bundle.putString("chosen", n);
+                                        bundle.putString("chosenIndex",   indexRaca);
+
                                         intent.putExtras(bundle);
 
                                         view.getContext().startActivity(intent);
                                     }
-                                }, 1500); //fecha o handler
+                                }, 1500); //fecha o handler //1500 é o tempo de espera para mudar de activity
 
                             }
                         });
@@ -122,7 +125,6 @@ public class ChooseRaceActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
         //a forma como se vai apresentar:linhas ou colonas.Neste caso linhas
         rv.setLayoutManager(new GridLayoutManager(this,1));
-
 
     }//fecha a oncreacte
 
